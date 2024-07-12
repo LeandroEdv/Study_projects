@@ -21,6 +21,7 @@ import customtkinter as ctk
 from tkinter import *
 from tkinter import messagebox, ttk
 from calculadora import calc # módulo personalizado 
+import re
 
 class App(ctk.CTk):
     def __init__(self):        
@@ -31,7 +32,7 @@ class App(ctk.CTk):
 
     # configurando a janela principal - main screean configuration
     def configuracoes_da_janela_inicial(self):
-        self.geometry("810x450")
+        self.geometry("810x550")
         self.title("Sistema de login")
         self.resizable(False, False) 
         
@@ -67,8 +68,10 @@ class App(ctk.CTk):
         self.interest_rate_value = ctk.CTkLabel(self.frame_register, text="Taxa de Juros", font=("Century Gothic bold", 16))
         self.interest_rate_value.grid(row=3, column=0, padx=5, pady=1,sticky=W)
         
+        
         self.interest_rate_entry = ctk.CTkEntry(self.frame_register, width=200, corner_radius=10,  placeholder_text="%", font=("Century Gothic bold", 16))
         self.interest_rate_entry.grid(row=4, column=0, padx=5, pady=1, sticky=W)
+        self.interest_rate_entry.bind('<KeyRelease>', self.get_atibutes)
         
         self.period_value = ctk.CTkLabel(self.frame_register, text="Período", font=("Century Gothic bold", 16))
         self.period_value.grid(row=3, column=1, padx=5, pady=1,sticky=W)
@@ -98,8 +101,16 @@ class App(ctk.CTk):
         #self.password_register_entry.delete(0, END)
        # self.confirm_password_register_entry.delete(0, END)
        
-    def get_atibutes(self):
-        pass
+    def get_atibutes(self, event = None):
+        
+        pattern = r'^\d{1,3}$'
+        
+        if re.findall(pattern, self.interest_rate_entry.get()): 
+                print('passou')
+        else:
+            self.interest_rate_entry.delete(0,END)
+        
+            
         
         
         
