@@ -91,8 +91,11 @@ class App(ctk.CTk):
         self.frame_result = ctk.CTkFrame(self.frame_register)
         self.frame_result.grid(row=7, column=1)
         
-        self.total_label = ttk.Label(self.frame_result, font=("Century Gothic bold", 18), text="0,00 R$")
-        self.total_label.grid(row=0, column=1, padx=5, pady=5, sticky='E')
+        self.label_total = ctk.CTkLabel(self.frame_result, text="Valor Total:", font=("Century Gothic bold", 16))
+        self.label_total.grid(row=0, column=0, padx=5, pady=1,sticky=W)
+        
+        self.result_total = ttk.Label(self.frame_result, font=("Century Gothic bold", 18), text="0,00 R$")
+        self.result_total.grid(row=0, column=1, padx=5, pady=5, sticky=E)
         
     def clear_entry_register(self):
         self.initial_value_entry.delete(0, END)
@@ -107,7 +110,7 @@ class App(ctk.CTk):
         tempo_da_aplicacao = float(self.period_value_entry.get())
         result = calc(capital_aplicado, aporte_mensal, taxa_de_juros, tempo_da_aplicacao )
         #self.result = result
-        self.total_label.config(text= f'{result :.2f}')
+        self.result_total.config(text= f'{result :.2f}')
 if __name__ == "__main__":
     app = App()
     app.mainloop()
