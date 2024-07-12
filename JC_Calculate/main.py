@@ -14,14 +14,13 @@ Dependências:
     - customtkinter
     - tkinter
     - calculadora (módulo customizado para cálculo de juros compostos)
-
 """
 
 # IMPORTAÇÃO DE BIBLIOTECAS
 import customtkinter as ctk
 from tkinter import *
 from tkinter import messagebox, ttk
-from calculadora import calc
+from calculadora import calc # módulo personalizado 
 
 class App(ctk.CTk):
     def __init__(self):        
@@ -37,7 +36,7 @@ class App(ctk.CTk):
         self.resizable(False, False) 
         
     def tela_de_login(self):
-        # TRABALHANDO COM AS IMAGENS
+        # IMPORTAÇÃO DE IMAGENS
         self.img = PhotoImage(file="img/login_img.png")
         self.img = self.img.subsample(6,6)
         self.label_img = ctk.CTkLabel(self, text=None, image=self.img)
@@ -47,13 +46,9 @@ class App(ctk.CTk):
         
         # FRAME DE FORMULÁRIO DE CADASTRO
         self.frame_register = ctk.CTkFrame(self)
-        #self.frame_register.place(x=350, y=10)
         self.frame_register.grid(row=1, column=1)
         
-        
-        
         #CRIAR WIDGETS TELAS DE CADASTRO
-        
         self.label_title = ctk.CTkLabel(self, text="Calculadora de Juros compostos", font=("Century Gothic bold", 24), text_color='#416698')
         self.label_title.grid(row=0, column=0, padx=10, pady=15)
         
@@ -92,7 +87,7 @@ class App(ctk.CTk):
         self.frame_result.grid(row=7, column=1)
         
         self.label_total = ctk.CTkLabel(self.frame_result, text="Valor Total:", font=("Century Gothic bold", 16))
-        self.label_total.grid(row=0, column=0, padx=5, pady=1,sticky=W)
+        self.label_total.grid(row=0, column=0, padx=5, pady=1, sticky=E)
         
         self.result_total = ttk.Label(self.frame_result, font=("Century Gothic bold", 18), text="0,00 R$")
         self.result_total.grid(row=0, column=1, padx=5, pady=5, sticky=E)
@@ -102,15 +97,28 @@ class App(ctk.CTk):
         self.interest_rate_entry.delete(0, END)
         #self.password_register_entry.delete(0, END)
        # self.confirm_password_register_entry.delete(0, END)
-    
+       
+    def get_atibutes(self):
+        pass
+        
+        
+        
     def calculate(self):
-        capital_aplicado = float(self.initial_value_entry.get())
-        aporte_mensal = float(self.monthly_contribution_entry.get())
-        taxa_de_juros = float(self.interest_rate_entry.get())
-        tempo_da_aplicacao = float(self.period_value_entry.get())
-        result = calc(capital_aplicado, aporte_mensal, taxa_de_juros, tempo_da_aplicacao )
+        try:
+            capital_aplicado = float(self.initial_value_entry.get())
+            aporte_mensal = float(self.monthly_contribution_entry.get())
+            taxa_de_juros = float(self.interest_rate_entry.get())
+            tempo_da_aplicacao = float(self.period_value_entry.get())
+            result = calc(capital_aplicado, aporte_mensal, taxa_de_juros, tempo_da_aplicacao )
+            
+            self.result_total.config(text= f'{result :.2f}')
+        except:
+            msg = messagebox.showerror('Erro','Digite um valor válido')
+            
+        
         #self.result = result
-        self.result_total.config(text= f'{result :.2f}')
+        
+        
 if __name__ == "__main__":
     app = App()
     app.mainloop()
