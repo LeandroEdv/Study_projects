@@ -15,7 +15,6 @@ public class Usuario {
 	@Column(name = "id")
 	private Integer id;
 	
-
 	@Column(name = "nome", length = 100, nullable = true)
 	private String nome;
 	
