@@ -1,18 +1,21 @@
 package cep;
 
-import java.awt.EventQueue;
-
-import javax.swing.JDialog;
-import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextPane;
-import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.Color;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
 import java.awt.Cursor;
+import java.awt.Desktop;
+import java.awt.EventQueue;
+import java.awt.SystemColor;
+import java.awt.Toolkit;
+import java.net.URI;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Sobre extends JDialog {
 
@@ -39,10 +42,11 @@ public class Sobre extends JDialog {
 	 * Create the dialog.
 	 */
 	public Sobre() {
+		setModal(true);
 		setResizable(false);
 		setTitle("Sobre");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Sobre.class.getResource("/img/home.png")));
-		setBounds(100, 100, 450, 300);
+		setBounds(150, 150, 450, 300);
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Buscador de CEP - ver 1.0");
@@ -61,27 +65,54 @@ public class Sobre extends JDialog {
 		lblNewLabel_3.setBounds(59, 152, 113, 17);
 		getContentPane().add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("republicavirtual.com.br");
-		lblNewLabel_4.setForeground(new Color(30, 144, 255));
-		lblNewLabel_4.setBounds(157, 152, 169, 17);
-		getContentPane().add(lblNewLabel_4);
+		JLabel lblWebServece = new JLabel("republicavirtual.com.br");
+		lblWebServece.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				link("https://www.republicavirtual.com.br/");
+			}
+		});
+		lblWebServece.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblWebServece.setForeground(new Color(30, 144, 255));
+		lblWebServece.setBounds(157, 152, 169, 17);
+		getContentPane().add(lblWebServece);
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setBackground(SystemColor.control);
-		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.setBorder(null);
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setIcon(new ImageIcon(Sobre.class.getResource("/img/youtube.png")));
-		btnNewButton.setBounds(272, 210, 48, 48);
-		getContentPane().add(btnNewButton);
+		JButton btnYoutube = new JButton("");
+		btnYoutube.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				link("https://www.youtube.com/watch?v=sKO2C58yf28");
+			}
+		});
+		btnYoutube.setBackground(SystemColor.control);
+		btnYoutube.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnYoutube.setBorder(null);
+		btnYoutube.setBorderPainted(false);
+		btnYoutube.setIcon(new ImageIcon(Sobre.class.getResource("/img/youtube.png")));
+		btnYoutube.setBounds(272, 210, 48, 48);
+		getContentPane().add(btnYoutube);
 		
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(Sobre.class.getResource("/img/github.png")));
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBorder(null);
-		btnNewButton_1.setBackground(SystemColor.control);
-		btnNewButton_1.setBounds(177, 210, 48, 48);
-		getContentPane().add(btnNewButton_1);
+		JButton btnGithub = new JButton("");
+		btnGithub.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				link("https://github.com/LeandroEdv");
+			}
+		});
+		btnGithub.setIcon(new ImageIcon(Sobre.class.getResource("/img/github.png")));
+		btnGithub.setBorderPainted(false);
+		btnGithub.setBorder(null);
+		btnGithub.setBackground(SystemColor.control);
+		btnGithub.setBounds(177, 210, 48, 48);
+		getContentPane().add(btnGithub);
 
+	}
+	private void link (String site) {
+		Desktop desktop = Desktop.getDesktop();
+		
+		try {
+			URI uri = new URI(site);
+			desktop.browse(uri);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 	}
 }
