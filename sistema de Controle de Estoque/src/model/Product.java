@@ -8,14 +8,14 @@ public class Product implements Comparable<Product> {
     private String name;
     private double price;
     private int amount;
-    private int minAmont;
+    private int minAmount;
 
-    public Product(int id, String name, double price, int amount, int minAmont) {
+    public Product(int id, String name, double price, int amount, int minAmount) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.amount = amount;
-        this.minAmont = minAmont;
+        this.minAmount = minAmount;
     }
 
 
@@ -78,13 +78,13 @@ public class Product implements Comparable<Product> {
         }
     }
 
-    public int getMinAmont() {
-        return minAmont;
+    public int getMinAmount() {
+        return minAmount;
     }
 
-    public void setMinAmont(int minAmont) {
-        if (minAmont >= 0){
-            this.minAmont = minAmont;
+    public void setMinAmount(int minAmount) {
+        if (minAmount >= 0){
+            this.minAmount = minAmount;
         }else {
             System.out.println("The min amount of the product cannot be less than zero");
         }
@@ -97,7 +97,7 @@ public class Product implements Comparable<Product> {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", amount=" + amount +
-                ", nimAmont=" + minAmont +
+                ", nimAmont=" + minAmount +
                 '}';
     }
 }
