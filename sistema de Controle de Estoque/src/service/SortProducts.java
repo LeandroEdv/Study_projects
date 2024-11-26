@@ -16,23 +16,23 @@ public class SortProducts {
         this.productList = productList;
     }
 
-    private List<Product> sortedList(Comparator comparator){
-        List<Product> products= new ArrayList<>(productList);
+    private List<Product> sortedList(Comparator comparator) {
+        List<Product> products = new ArrayList<>(productList);
         products.sort(comparator);
         return products;
     }
 
-    public List<Product> listProductByName(){
+    public List<Product> listProductByName() {
 
-        return sortedList(new ServiceProductByName()) ;
+        return sortedList(new ServiceProductByName());
     }
 
-    public List<Product> listProductByPrice(){
+    public List<Product> listProductByPrice() {
 
         return sortedList(new ServiceProductByPrice());
     }
 
-    public List<Product> listProductByAmount(){
+    public List<Product> listProductByAmount() {
         return sortedList(new ServiceProductByAmount());
     }
 

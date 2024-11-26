@@ -18,7 +18,7 @@ public class Main {
         //System.out.println(inventoryService.getProductList());
         //inventoryService.deleteProductById(01);
         //inventoryService.updateAmongProductById(05,6);
-        //System.out.println(inventoryService.productByName("Pcx - Gamer"));
+        System.out.println(inventoryService.productByName("Pc - Gamer"));
         //System.out.println(inventoryService.productById(2));
 
         //inventoryService.decrementProduct(01);
@@ -26,9 +26,9 @@ public class Main {
         //System.out.println(reportService.invetaryTotalPrice());
         //System.out.println(reportService.listProductByAmount());
         //System.out.println(reportService.listProductByName());
-        for (Product product : reportService.listProductByName()) {
-            System.out.println(product);
-        }
+       // for (Product product : reportService.listProductByName()) {
+       //     System.out.println(product);
+       // }
 
         //System.out.println(inventoryService.getProductList());
 

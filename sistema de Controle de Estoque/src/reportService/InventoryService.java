@@ -1,7 +1,7 @@
 package reportService;
 
 import model.Product;
-import service.FindProduct;
+import service.ProductFinder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,11 +10,11 @@ import java.util.List;
 public class InventoryService {
 
     private List<Product> productList;
-    FindProduct findProduct;
+    ProductFinder productFinder;
 
     public InventoryService() {
         this.productList = new ArrayList();
-        findProduct = new FindProduct(productList);
+        productFinder = new ProductFinder(productList);
     }
 
     public List<Product> getProductList() {
@@ -31,12 +31,12 @@ public class InventoryService {
     }
 
     public Product productById(int id) {
-        return findProduct.productById(id);
+        return productFinder.productById(id);
     }
 
     public Product productByName(String name) {
 
-        return findProduct.productByName(name);
+        return productFinder.productByName(name);
     }
 
     public void deleteProductById(int id) {
