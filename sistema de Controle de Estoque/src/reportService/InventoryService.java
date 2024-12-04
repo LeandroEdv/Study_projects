@@ -31,12 +31,15 @@ public class InventoryService {
     }
 
     public Product productById(int id) {
-        return productFinder.productById(id);
+
+        return productFinder.productById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product id: " + id + " not found"));
     }
 
     public Product productByName(String name) {
 
-        return productFinder.productByName(name);
+        return productFinder.productByName(name)
+                .orElseThrow(() -> new IllegalArgumentException("Product: " + name + " not found"));
     }
 
     public void deleteProductById(int id) {

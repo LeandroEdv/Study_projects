@@ -3,6 +3,7 @@ package service;
 import model.Product;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class ProductFinder {
@@ -12,7 +13,7 @@ public class ProductFinder {
         this.productList = productList;
     }
 
-    public Product findProduct(Predicate<Product> predicate) {
+    public Optional<Product> findProduct(Predicate<Product> predicate) {
         Product productFound = null;
         for (Product product : productList) {
             if (predicate.test(product)) {
@@ -20,14 +21,14 @@ public class ProductFinder {
                 break;
             }
         }
-        return productFound;
+        return Optional.ofNullable(productFound);
     }
 
-    public Product productById(int id) {
+    public Optional<Product> productById(int id) {
       return findProduct(product -> product.getId().equals(id));
     }
 
-    public Product productByName(String name) {
+    public Optional<Product> productByName(String name) {
         return findProduct(product -> product.getName().equals(name));
     }
 
