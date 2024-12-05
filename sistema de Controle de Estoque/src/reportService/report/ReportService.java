@@ -31,12 +31,13 @@ public class ReportService {
         return sortProducts.listProductByAmount();
     }
 
-    public double invetaryTotalPrice(){
-        double totalValue = 0;
-        for (Product product : inventoryService.getProductList()) {
-            totalValue += product.getPrice() * product.getAmount();
-        }
-        return totalValue;
+    public double inventoryTotalPrice(){
+
+        return inventoryService.getProductList()
+                .stream()
+                .mapToDouble(i -> i.getAmount() * i.getPrice())
+                .sum();
+
     }
 
 }
