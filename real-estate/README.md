@@ -1,7 +1,13 @@
 # Sistema de Gerenciamento de Imóveis
 
+
 Uma API RESTful para gerenciar imóveis, permitindo realizar operações de criação, leitura, atualização e exclusão (
 CRUD), além de filtrar e paginar resultados com base em critérios específicos, como categoria e tipo de transação.
+
+<img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" height="30" alt="java logo"  />
+<img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?logo=springboot&logoColor=fff" height="30" alt="java logo"  />
+<img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=fff" height="30" alt="java logo"  />
+
 
 ---
 
@@ -93,3 +99,5 @@ Este projeto foi desenvolvido como parte de estudos e práticas em desenvolvimen
 
 - [LinkedIn](https://www.linkedin.com/in/leandro-edvan/)
 - [GitHub](https://github.com/LeandroEdv/)
+
+<img src="https://img.shields.io/github/license/LeandroEdv/Study_projects.svg" height="30" alt="java logo"  />
