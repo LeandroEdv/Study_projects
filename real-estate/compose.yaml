@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=${DATABASE}'
+      - 'MYSQL_PASSWORD=${MYSQLPASSWORD}'
+      - 'MYSQL_ROOT_PASSWORD=${MYSQLROOTPASSORD}'
+      - 'MYSQL_USER=${MYSQLUSER}'
+    ports:
+      - '3306:3306'
+    volumes:
+      - real_state_data:/var/lib/mysql
+volumes:
+  real_state_data:
