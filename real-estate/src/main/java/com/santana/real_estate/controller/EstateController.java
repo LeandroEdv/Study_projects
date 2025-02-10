@@ -6,6 +6,7 @@ import com.santana.real_estate.dto.estatedto.EstatePutRequestBody;
 import com.santana.real_estate.service.estateservice.EstateService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -22,13 +23,13 @@ public class EstateController {
 
     @Operation(summary = "List all Estate paginated", tags = "estate-list")
     @GetMapping
-    public ResponseEntity<Page<Estate>> listAll(Pageable pageable) {
+    public ResponseEntity<Page<Estate>> listAll(@ParameterObject Pageable pageable) {
         return new ResponseEntity<>(estateService.findAll(pageable), HttpStatus.OK);
     }
 
-    @Operation(summary = "List all Estate paginated by category",tags = "estate-list")
+    @Operation(summary = "List all Estate paginated by category", tags = "estate-list")
     @GetMapping(path = "find/{category}")
-    public ResponseEntity<Page<Estate>> findByCategory(@PathVariable String category, Pageable pageable) {
+    public ResponseEntity<Page<Estate>> findByCategory(@PathVariable String category, @ParameterObject Pageable pageable) {
         return new ResponseEntity<>(estateService.findByCategory(category, pageable), HttpStatus.OK);
     }
 
@@ -36,7 +37,7 @@ public class EstateController {
     @GetMapping(path = "find/{category}/{transactionType}")
     public ResponseEntity<Page<Estate>> findByCategoryAndTransactionType(@PathVariable String category,
                                                                          @PathVariable String transactionType,
-                                                                         Pageable pageable) {
+                                                                         @ParameterObject Pageable pageable) {
         return new ResponseEntity<>(estateService
                 .findByCategoryAndTransactionType(category, transactionType, pageable), HttpStatus.OK);
     }
