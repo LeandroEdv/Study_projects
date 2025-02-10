@@ -2,9 +2,10 @@ package com.santana.real_estate.dto.estatedto;
 
 import com.santana.real_estate.domain.estatedomain.EstateCategory;
 import com.santana.real_estate.domain.estatedomain.EstateTransactionType;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,21 +17,30 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EstatePutRequestBody {
 
+    @NotNull(message = "The ID cannot be null")
     private long id;
 
     @NotBlank(message = "the address cannot be null or blank")
+    @Schema(description = "Estate address", example = "Avenue Test, 456")
     private String address;
 
     //To do: Annotation about Enumerate
-    @NotBlank
+    @NotNull(message = "The category cannot be null")
+    @Enumerated(EnumType.STRING)
+    @Schema(description = "Estate category", example = "House / APARTMENT")
     private EstateCategory category;
-    @NotBlank
+
+    @NotNull(message = "The transaction type cannot be null")
+    @Enumerated(EnumType.STRING)
+    @Schema(description = "Estate transaction type", example = "RENTAL / SALE")
     private EstateTransactionType transactionType;
 
-    @Size(min = 3, message = "the price must have 3 characters")
+    @NotNull(message = "The price cannot be null")
+    @Schema(description = "Estate transaction price", example = "2500.00")
     @Positive
     private double price;
 
-    @NotBlank(message = "the Estate must be a description")
+    @NotBlank(message = "The description cannot be blank")
+    @Schema(description = "Estate description", example = "large house near of a park")
     private String description;
 }
