@@ -7,6 +7,7 @@ import com.santana.real_estate.domain.estatedomain.address.EstateAddress;
 import com.santana.real_estate.dto.estatedto.EstatePostRequestBody;
 import com.santana.real_estate.dto.estatedto.EstatePutRequestBody;
 import com.santana.real_estate.repository.estaterepository.EstateRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -42,7 +43,7 @@ public class EstateService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
                         String.format("Estate id '%d' not found", id)));
     }
-
+@Transactional
     public Estate save(EstatePostRequestBody estatePostRequestBody) {
 
         EstateAddress address = EstateAddress.builder()

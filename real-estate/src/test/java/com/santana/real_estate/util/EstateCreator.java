@@ -1,45 +1,100 @@
 package com.santana.real_estate.util;
 
+
 import com.santana.real_estate.domain.estatedomain.Estate;
 import com.santana.real_estate.domain.estatedomain.EstateCategory;
 import com.santana.real_estate.domain.estatedomain.EstateTransactionType;
+import com.santana.real_estate.domain.estatedomain.address.EstateAddress;
 
 public class EstateCreator {
 
+
     public static Estate createEstateHouseToBeSave() {
-        return Estate.builder()
+
+        EstateAddress address = EstateAddress.builder()
+                .street("Rua velha")
+                .number("A51")
+                .state("BA")
+                .zipCode("154-222")
+                .neighborhood("centro")
+                .city("Camaça")
+                .build();
+
+         Estate estate = Estate.builder()
                 .price(0.00)
-                .address("Rua: test 1st april")
                 .category(EstateCategory.HOUSE)
                 .description("house Test")
                 .transactionType(EstateTransactionType.SALE)
+                .address(address)
                 .build();
+
+         address.setEstate(estate);
+         return estate;
     }
 
     public static Estate createEstateApartmentToBeSave() {
-        return Estate.builder()
+
+        EstateAddress address = EstateAddress.builder()
+                .street("Rua velha")
+                .number("A51")
+                .state("BA")
+                .zipCode("154-222")
+                .neighborhood("centro")
+                .city("Camaça")
+                .build();
+
+        Estate estate = Estate.builder()
+                .id(2L)
                 .price(0.00)
-                .address("Rua: test 2st april")
+                .address(address)
                 .category(EstateCategory.APARTMENT)
                 .description("house Test")
                 .transactionType(EstateTransactionType.RENTAL)
                 .build();
+
+        address.setEstate(estate);
+        return estate;
+
+
     }
+
     public static Estate createEstateWithValidId() {
-        return Estate.builder()
+        EstateAddress address = EstateAddress.builder()
                 .id(1L)
+                .street("Rua velha")
+                .number("A51")
+                .state("BA")
+                .zipCode("154-222")
+                .neighborhood("centro")
+                .city("Camaça")
+                .build();
+
+
+        return Estate.builder()
+                .id(3L)
                 .price(0.00)
-                .address("Rua: test 2st april")
+                .address(address)
                 .category(EstateCategory.APARTMENT)
                 .description("house Test")
                 .transactionType(EstateTransactionType.RENTAL)
                 .build();
     }
+
     public static Estate createEstateToBeUpdate() {
-        return Estate.builder()
+        EstateAddress address = EstateAddress.builder()
                 .id(1L)
+                .street("Rua velha 2")
+                .number("A51 222")
+                .state("MA")
+                .zipCode("154-222 66")
+                .neighborhood("centro")
+                .city("Teste City")
+                .build();
+
+
+        return Estate.builder()
                 .price(0.00)
-                .address("Rua: test 2st april update")
+                .address(address)
                 .category(EstateCategory.APARTMENT)
                 .description("house Test update")
                 .transactionType(EstateTransactionType.RENTAL)
@@ -47,9 +102,9 @@ public class EstateCreator {
     }
 
     public static Estate createEstateHouseWithAddressNull() {
+
         return Estate.builder()
                 .price(0.00)
-                .address("Rua: test 1st april")
                 .category(EstateCategory.HOUSE)
                 .description("house Test")
                 .transactionType(EstateTransactionType.SALE)
