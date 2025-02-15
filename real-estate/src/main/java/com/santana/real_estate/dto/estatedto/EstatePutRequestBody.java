@@ -2,10 +2,13 @@ package com.santana.real_estate.dto.estatedto;
 
 import com.santana.real_estate.domain.estatedomain.EstateCategory;
 import com.santana.real_estate.domain.estatedomain.EstateTransactionType;
+import com.santana.real_estate.dto.estatedto.addressdto.EstateAddressDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,10 +22,6 @@ public class EstatePutRequestBody {
 
     @NotNull(message = "The ID cannot be null")
     private long id;
-
-    @NotBlank(message = "the address cannot be null or blank")
-    @Schema(description = "Estate address", example = "Avenue Test, 456")
-    private String address;
 
     //To do: Annotation about Enumerate
     @NotNull(message = "The category cannot be null")
@@ -43,4 +42,9 @@ public class EstatePutRequestBody {
     @NotBlank(message = "The description cannot be blank")
     @Schema(description = "Estate description", example = "large house near of a park")
     private String description;
+
+    @NotBlank(message = "the address cannot be null or blank")
+    @Schema(description = "Estate address", example = "Avenue Test, 456")
+    private EstateAddressDto address;
+
 }

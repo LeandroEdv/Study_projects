@@ -3,9 +3,11 @@ package com.santana.real_estate.service.estateservice;
 import com.santana.real_estate.domain.estatedomain.Estate;
 import com.santana.real_estate.domain.estatedomain.EstateCategory;
 import com.santana.real_estate.domain.estatedomain.EstateTransactionType;
+import com.santana.real_estate.domain.estatedomain.address.EstateAddress;
 import com.santana.real_estate.dto.estatedto.EstatePostRequestBody;
 import com.santana.real_estate.dto.estatedto.EstatePutRequestBody;
 import com.santana.real_estate.repository.estaterepository.EstateRepository;
+import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,11 +44,21 @@ public class EstateService {
     }
 
     public Estate save(EstatePostRequestBody estatePostRequestBody) {
+
+        EstateAddress address = EstateAddress.builder()
+                .street(estatePostRequestBody.getAddress().getStreet())
+                .number(estatePostRequestBody.getAddress().getNumber())
+                .state(estatePostRequestBody.getAddress().getState())
+                .zipCode(estatePostRequestBody.getAddress().getZipCode())
+                .neighborhood(estatePostRequestBody.getAddress().getNeighborhood())
+                .city(estatePostRequestBody.getAddress().getCity())
+                .build();
+
         Estate estate = Estate.builder()
                 .price(estatePostRequestBody.getPrice())
                 .category(estatePostRequestBody.getCategory())
                 .transactionType(estatePostRequestBody.getTransactionType())
-                .address(estatePostRequestBody.getAddress())
+                .address(address)
                 .description(estatePostRequestBody.getDescription())
                 .build();
         return estateRepository.save(estate);
@@ -59,12 +71,21 @@ public class EstateService {
 
     public void replace(EstatePutRequestBody estatePutRequestBody) {
         Estate estate = findByIdOrThrowResponseStatusException(estatePutRequestBody.getId());
+        EstateAddress address = EstateAddress.builder()
+                .street(estatePutRequestBody.getAddress().getStreet())
+                .number(estatePutRequestBody.getAddress().getNumber())
+                .state(estatePutRequestBody.getAddress().getState())
+                .zipCode(estatePutRequestBody.getAddress().getZipCode())
+                .neighborhood(estatePutRequestBody.getAddress().getNeighborhood())
+                .city(estatePutRequestBody.getAddress().getCity())
+                .build();
+
         estate = Estate.builder()
                 .id(estatePutRequestBody.getId())
                 .price(estatePutRequestBody.getPrice())
                 .transactionType(estatePutRequestBody.getTransactionType())
                 .category(estatePutRequestBody.getCategory())
-                .address(estatePutRequestBody.getAddress())
+                .address(address)
                 .description(estatePutRequestBody.getDescription())
                 .build();
         estateRepository.save(estate);
