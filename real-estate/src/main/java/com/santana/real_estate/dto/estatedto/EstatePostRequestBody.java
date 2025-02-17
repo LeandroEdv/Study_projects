@@ -22,7 +22,7 @@ public class EstatePostRequestBody {
 
     @NotNull(message = "The category cannot be null")
     @Enumerated(EnumType.STRING)
-    @Schema(description = "Estate category", example = "House / APARTMENT")
+    @Schema(description = "Estate category", example = "HOUSE / APARTMENT")
     private EstateCategory category;
 
     @NotNull(message = "The transaction type cannot be null")

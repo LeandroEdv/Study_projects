@@ -35,9 +35,9 @@ public class EstateAddress {
     @Column(nullable = false)
     private String city;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String state;
-
+    private Uf uf;
 
     @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     @JsonBackReference

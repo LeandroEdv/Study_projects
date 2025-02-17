@@ -12,7 +12,7 @@ public static EstatePostRequestBody estatePostRequestBody(){
     EstateAddressDto address = EstateAddressDto.builder()
             .street("Rua velha")
             .number("A51")
-            .state("BA")
+            .uf("BA")
             .zipCode("154-222")
             .neighborhood("centro")
             .city("Camaça")

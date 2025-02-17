@@ -8,7 +8,6 @@ import com.santana.real_estate.dto.estatedto.EstatePostRequestBody;
 import com.santana.real_estate.dto.estatedto.EstatePutRequestBody;
 import com.santana.real_estate.repository.estaterepository.EstateRepository;
 import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -49,7 +48,7 @@ public class EstateService {
         EstateAddress address = EstateAddress.builder()
                 .street(estatePostRequestBody.getAddress().getStreet())
                 .number(estatePostRequestBody.getAddress().getNumber())
-                .state(estatePostRequestBody.getAddress().getState())
+                .uf(estatePostRequestBody.getAddress().getUf())
                 .zipCode(estatePostRequestBody.getAddress().getZipCode())
                 .neighborhood(estatePostRequestBody.getAddress().getNeighborhood())
                 .city(estatePostRequestBody.getAddress().getCity())
@@ -75,7 +74,7 @@ public class EstateService {
         EstateAddress address = EstateAddress.builder()
                 .street(estatePutRequestBody.getAddress().getStreet())
                 .number(estatePutRequestBody.getAddress().getNumber())
-                .state(estatePutRequestBody.getAddress().getState())
+                .uf(estatePutRequestBody.getAddress().getUf())
                 .zipCode(estatePutRequestBody.getAddress().getZipCode())
                 .neighborhood(estatePutRequestBody.getAddress().getNeighborhood())
                 .city(estatePutRequestBody.getAddress().getCity())
