@@ -4,6 +4,8 @@ import com.santana.real_estate.domain.estatedomain.address.Uf;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +19,7 @@ import lombok.NoArgsConstructor;
 public class EstateAddressDto {
 
 
-    @NotNull(message = "The category cannot be null")
+    @NotBlank(message = "The category cannot be null")
     @Schema(description = "Address Street", example = "Rua: Helena")
     private String street;
 

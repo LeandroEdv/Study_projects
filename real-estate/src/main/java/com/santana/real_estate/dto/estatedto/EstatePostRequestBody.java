@@ -39,7 +39,6 @@ public class EstatePostRequestBody {
     @Schema(description = "Estate description", example = "large house near of a park")
     private String description;
 
-    @NotBlank(message = "the address cannot be null or blank")
-    @Schema(description = "Estate address", example = "Avenue Test, 456")
+    //@NotBlank(message = "the address cannot be null or blank")
     private EstateAddressDto address;
 }

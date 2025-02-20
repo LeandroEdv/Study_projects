@@ -26,7 +26,7 @@ public class EstatePutRequestBody {
     //To do: Annotation about Enumerate
     @NotNull(message = "The category cannot be null")
     @Enumerated(EnumType.STRING)
-    @Schema(description = "Estate category", example = "House / APARTMENT")
+    @Schema(description = "Estate category", example = "HOUSE / APARTMENT")
     private EstateCategory category;
 
     @NotNull(message = "The transaction type cannot be null")
@@ -43,8 +43,7 @@ public class EstatePutRequestBody {
     @Schema(description = "Estate description", example = "large house near of a park")
     private String description;
 
-    @NotBlank(message = "the address cannot be null or blank")
-    @Schema(description = "Estate address", example = "Avenue Test, 456")
+    //@NotBlank(message = "the address cannot be null or blank")
     private EstateAddressDto address;
 
 }
