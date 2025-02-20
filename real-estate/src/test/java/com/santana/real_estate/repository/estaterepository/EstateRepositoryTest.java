@@ -37,7 +37,6 @@ class EstateRepositoryTest {
 
 
         Estate house = EstateCreator.createEstateHouseToBeSave();
-        estateAddressSavad01.setId(1L);
         house.setAddress(estateAddressSavad01);
         Estate houseSaved = this.estateRepository.save(house);
 
@@ -60,10 +59,10 @@ class EstateRepositoryTest {
 
         Assertions.assertThat(houseList.getContent()).isNotEmpty().hasSize(1);
 
-       Assertions.assertThat(apartmentList.getContent()).isNotEmpty().hasSize(1);
+        Assertions.assertThat(apartmentList.getContent()).isNotEmpty().hasSize(1);
 
         Assertions.assertThat(houseList.getContent().get(0).getCategory()).isEqualTo(EstateCategory.HOUSE);
-       Assertions.assertThat(apartmentList.getContent().get(0).getCategory()).isEqualTo(EstateCategory.APARTMENT);
+        Assertions.assertThat(apartmentList.getContent().get(0).getCategory()).isEqualTo(EstateCategory.APARTMENT);
 
     }
 
@@ -113,7 +112,7 @@ class EstateRepositoryTest {
         Assertions.assertThat(apartmentList.getContent()).isEmpty();
     }
 
-//    @Test
+    //    @Test
 //    @DisplayName("save Throws DataIntegrityViolationException when address is null")
 //    void save_throwsDataIntegrityViolationException_whenAddressIsNull() {
 //        EstateAddress estateAddress = null;
@@ -124,6 +123,7 @@ class EstateRepositoryTest {
 //        Assertions.assertThatExceptionOfType(DataIntegrityViolationException.class)
 //                .isThrownBy(() -> this.estateRepository.save(estate));
 //    }
+
     @Test
     @DisplayName("save Throws DataIntegrityViolationException when address is null")
     void save_throwsDataIntegrityViolationException_whenAddressIsNull() {
