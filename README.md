@@ -3,6 +3,10 @@
 
 Este repositório contém diversos projetos desenvolvidos com o propósito de estudo, abrangendo Java, Python e integrações com frontend.
 
+## [Sistema de Gerenciamento de Imóveis](https://github.com/LeandroEdv/Study_projects/tree/main/real-estate)
+Uma API RESTful para gerenciar imóveis, permitindo realizar operações de criação, leitura, atualização e exclusão ( CRUD), além de filtrar e paginar resultados com base em critérios específicos, como categoria e tipo de transação.
+
+
 ## [Sistema de Controle de Estoque 📦](https://github.com/LeandroEdv/Study_projects/tree/main/sistema%20de%20Controle%20de%20Estoque)
 Este é um projeto de estudo desenvolvido para aprimorar minhas habilidades em Java puro, com foco na Programação Orientada a Objetos (POO). O sistema foi criado para gerenciar produtos em estoque, permitindo funcionalidades como adicionar, buscar, atualizar e gerar relatórios.
 
