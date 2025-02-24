@@ -7,7 +7,6 @@ import com.santana.real_estate.domain.estatedomain.address.EstateAddress;
 import com.santana.real_estate.util.EstateAddressCreator;
 import com.santana.real_estate.util.EstateCreator;
 import org.assertj.core.api.Assertions;
-import org.hibernate.AssertionFailure;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

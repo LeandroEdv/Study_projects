@@ -26,11 +26,12 @@ public class EstateService {
         return estateRepository.findAll(pageable);
     }
 
+    //To do : throw correct exception
     public Page<Estate> findByCategory(String category, Pageable pageable) {
 
         return estateRepository.findByCategory(EstateCategory.valueOf(category.toUpperCase()), pageable);
     }
-
+    //To do : throw correct exception
     public Page<Estate> findByCategoryAndTransactionType(String category, String transactionType, Pageable pageable) {
 
         return estateRepository.findByCategoryAndTransactionType(EstateCategory.valueOf(category.toUpperCase()),

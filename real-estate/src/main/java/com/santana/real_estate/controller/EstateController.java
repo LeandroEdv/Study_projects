@@ -14,15 +14,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-@RequestMapping("/estate")
+@RequestMapping("estate")
 public class EstateController {
 
     private final EstateService estateService;
 
     @Operation(summary = "List all Estate paginated", tags = "estate-list")
-    @GetMapping
+    @GetMapping(path = "find")
     public ResponseEntity<Page<Estate>> listAll(@ParameterObject Pageable pageable) {
         return new ResponseEntity<>(estateService.findAll(pageable), HttpStatus.OK);
     }
