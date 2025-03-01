@@ -2,6 +2,7 @@ package com.santana.real_estate.service.userservice;
 
 import com.santana.real_estate.domain.userdomain.User;
 import com.santana.real_estate.dto.userdto.RegisterRequestDTO;
+import com.santana.real_estate.dto.userdto.UserResponseDTO;
 import com.santana.real_estate.repository.userrepository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
     private final UserRepository userRepository;
 
-    public User save(RegisterRequestDTO data) {
+    public UserResponseDTO save(RegisterRequestDTO data) {
 
         if (this.userRepository.findByUsername(data.username()).isPresent()) {
             throw new RuntimeException("This user is already registered");
@@ -22,6 +23,8 @@ public class UserService {
                 .username(data.username())
                 .password(encryptedPassword)
                 .build();
-        return userRepository.save(user);
+      userRepository.save(user);
+
+       return new UserResponseDTO(user.getUsername());
     }
 }
