@@ -3,6 +3,7 @@ package com.santana.real_estate.domain.userdomain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 @Table(name = "users", uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
                 //@UniqueConstraint(columnNames = "email")
@@ -33,7 +35,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(()-> "ROLE_USER");
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.santana.real_estate.controller.authcontroller;
 
 import com.santana.real_estate.dto.userdto.LoginRequestDTO;
 import com.santana.real_estate.dto.userdto.RegisterRequestDTO;
-import com.santana.real_estate.repository.userrepository.UserRepository;
+import com.santana.real_estate.service.userservice.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
 
     @PostMapping("/login")
@@ -25,7 +25,8 @@ public class AuthController {
 
     }
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterRequestDTO body){
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity register(@RequestBody RegisterRequestDTO data){
+
+        return new ResponseEntity(userService.save(data),HttpStatus.OK);
     }
 }

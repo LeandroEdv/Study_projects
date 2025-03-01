@@ -9,6 +9,7 @@ import com.santana.real_estate.dto.estatedto.EstatePutRequestBody;
 import com.santana.real_estate.repository.estaterepository.EstateRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -27,9 +28,14 @@ public class EstateService {
     }
 
     //To do : throw correct exception
-    public Page<Estate> findByCategory(String category, Pageable pageable) {
+    public Page<Estate> findByCategory(String category, Pageable pageable)  {
 
-        return estateRepository.findByCategory(EstateCategory.valueOf(category.toUpperCase()), pageable);
+       try {
+           return estateRepository.findByCategory(EstateCategory.valueOf(category.toUpperCase()), pageable);
+       } catch (IllegalArgumentException e) {
+           throw new RuntimeException("insira um valor válido", e);
+       }
+
     }
     //To do : throw correct exception
     public Page<Estate> findByCategoryAndTransactionType(String category, String transactionType, Pageable pageable) {
@@ -38,7 +44,7 @@ public class EstateService {
                 EstateTransactionType.valueOf(transactionType.toUpperCase()), pageable);
     }
 
-    public Estate findByIdOrThrowResponseStatusException(long id) {
+    private Estate findByIdOrThrowResponseStatusException(long id) {
         return estateRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
                         String.format("Estate id '%d' not found", id)));
