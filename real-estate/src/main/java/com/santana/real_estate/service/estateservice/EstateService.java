@@ -44,7 +44,7 @@ public class EstateService {
                 EstateTransactionType.valueOf(transactionType.toUpperCase()), pageable);
     }
 
-    private Estate findByIdOrThrowResponseStatusException(long id) {
+    public Estate findByIdOrThrowResponseStatusException(long id) {
         return estateRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
                         String.format("Estate id '%d' not found", id)));

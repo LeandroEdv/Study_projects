@@ -38,7 +38,7 @@ public class EstateAddressDto {
     private String city;
 
     @Enumerated(EnumType.STRING)
-    @Schema(description = "Estate category", example = "House / APARTMENT")
+    @Schema(description = "uf", example = "GO, DF, BA")
     private Uf uf;
 
 }
